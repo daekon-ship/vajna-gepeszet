@@ -16,16 +16,16 @@ Cél: nemzetközi showcase szintű, characteres prémium megjelenés — nem "sz
   nagy sorszámok, mono mikro-címkék, klamp()-es fluid típus.
 
 ## Completed work
-- Projekt struktúra létrehozva.
+- Teljes oldal elkészült és ELŐVÁ (live): https://daekon-ship.github.io/vajna-gepeszet/
+- GitHub repo: https://github.com/daekon-ship/vajna-gepeszet (main, gh-pages élő)
+- Fontok: Archivo var (wdth 62–125) + IBM Plex Mono 400/500, self-hosted latin/latin-ext
+- Fotók: Pexels jelleg-képek film-grade-elve (Color .92, Contrast 1.06, Bright .97–.98)
+- QA: desktop/tablet/mobil pass, overflow fixek, forma + menü + űrlap tesztelve
 
 ## Open tasks
-- Fontok letöltése → assets/fonts
-- Fotóanyag: MEGVÁRÁS — nincs valódi ügyfélfotó. Stratégia: UI-s szintű CSS/SVG
-  textúra + placeholderek, VALÓDI fotók fogadására előkészítve (img/services/*,
-  img/work/*). Nem inventálunk referenciákat.
-- index.html + CSS + JS megírása
-- legal/impresszum.html, legal/adatkezeles.html
-- Vizuális QA desktop/tablet/mobil, overflow/CLS check, design audit
+- Valódi ügyfélfotók beszerzése → img/ csere (a layout készen fogadja őket)
+- Jogi adatok pontosítása (adószám/székhely) ha szükséges
+- Backend űrlap (Formspree) ha a mailto nem elég
 
 ## Blockers
 - Valódi referenciafotók nincsenek → elegáns "reference slot" megoldás.
