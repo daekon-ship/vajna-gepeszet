@@ -48,44 +48,57 @@
         const el = en.target;
         if (el.parentElement) {
           const idx = Array.from(el.parentElement.children).indexOf(el);
-          el.style.transitionDelay = (Math.min(Math.max(idx, 0), 6) * 0.09) + "s";
+          el.style.transitionDelay = (Math.min(Math.max(idx, 0), 6) * 0.06) + "s";
         }
         el.classList.add("in");
         io.unobserve(el);
       });
-    }, { threshold: 0.2, rootMargin: "0px 0px -6% 0px" });
+    }, { threshold: 0.15, rootMargin: "0px 0px -4% 0px" });
     targets.forEach(t => io.observe(t));
   }
 
-  /* ---------- Szolgáltatás index: hover stage ---------- */
+  /* ---------- Szolgáltatás index: fix oldalsáv kép-váltó ---------- */
   const stage = $("#svcStage");
-  const rows = $$(".svc-row");
-  const coarse = window.matchMedia("(hover: none)").matches;
-  if (stage && rows.length && !coarse) {
+  const stageCap = $("#svcStageCap");
+  const rows = $$(".svc-row[data-img]");
+  const NICE = { viz: "VÍZ", gaz: "GÁZ", futes: "FŰTÉS", klima: "KLÍMA", csatorna: "CSATORNA" };
+
+  if (stage && rows.length) {
     const layers = new Map();
     rows.forEach(row => {
-      const webp = row.dataset.img, jpg = row.dataset.jpg;
       const div = document.createElement("div");
       div.className = "im";
-      // A stage elem csak díszítő (aria-hidden), WebP elég; <picture> fallback nem szükséges.
-      div.style.backgroundImage = `url("${webp}")`;
+      div.style.backgroundImage = `url("${row.dataset.img}")`;
       stage.appendChild(div);
       layers.set(row, div);
     });
-    let active = null;
     const show = (row) => {
       stage.classList.add("on");
       layers.forEach((el, r) => el.classList.toggle("on", r === row));
-      active = row;
+      if (stageCap) {
+        const key = Object.keys(NICE).find(k => row.dataset.img.includes("/" + k + "."));
+        stageCap.textContent = key ? NICE[key] + " — RÉSZLET" : "GÉPÉSZET — RÉSZLET";
+        stageCap.classList.add("cap-on");
+      }
     };
-    rows.forEach(row => {
-      row.addEventListener("mouseenter", () => show(row));
-      row.addEventListener("focusin", () => show(row));
-    });
-    $("#svcIndex").addEventListener("mouseleave", () => {
+    const hide = () => {
       stage.classList.remove("on");
-      active = null;
-    });
+      layers.forEach(el => el.classList.remove("on"));
+      if (stageCap) {
+        stageCap.textContent = "VÁLASZON EGY SOR";
+        stageCap.classList.remove("cap-on");
+      }
+    };
+    if (window.matchMedia("(hover: hover)").matches) {
+      rows.forEach(row => {
+        row.addEventListener("mouseenter", () => show(row));
+        row.addEventListener("focusin", () => show(row));
+      });
+      $("#svcIndex").addEventListener("mouseleave", hide);
+    } else {
+      // érintőképernyő: a sticky panel az első képet mutatja alapból
+      show(rows[0]);
+    }
   }
 
   /* ---------- Űrlap ---------- */
@@ -98,16 +111,15 @@
       let ok = true;
       fields.forEach(n => {
         const input = form.elements[n];
-        const wrap = input.closest(".cfield");
+        const wrapEl = input.closest(".cfield");
         const good = input.value.trim().length > (n === "name" ? 1 : 3);
-        wrap.classList.toggle("err", !good);
+        wrapEl.classList.toggle("err", !good);
         if (!good) ok = false;
       });
       if (!ok) {
         state.textContent = "KÉREM TÖLTSE KI A KÖTELEZŐ MEZŐKET";
         return;
       }
-      // mailto összeállítás — nincs backend, az ügyfél e-mail kliense nyílik
       const data = new FormData(form);
       const body = [
         `Név: ${data.get("name")}`,
@@ -115,23 +127,19 @@
         `Munka: ${data.get("work")}`,
         `Üzenet: ${data.get("message") || "—"}`
       ].join("\n");
-      const mail = "vajnagepeszet@gmail.com";
-      const href = `mailto:${mail}?subject=${encodeURIComponent("Ajánlatkérés — weboldal")}&body=${encodeURIComponent(body)}`;
+      const href = `mailto:vajnagepeszet@gmail.com?subject=${encodeURIComponent("Ajánlatkérés — weboldal")}&body=${encodeURIComponent(body)}`;
       window.location.href = href;
       state.textContent = "AZ E-MAIL KLIENS MEGNYÍLIK — HA NEM TÖRTÉNIK SEMMI, HÍVJON TELEFONON";
       form.reset();
     });
   }
 
-  /* ---------- Biztonsági háló: lazy képek, amelyek soha nem léptek a viewportba ---------- */
+  /* ---------- Biztonsági háló: lazy képek, amelyek nem léptek viewportba ---------- */
   window.addEventListener("load", () => {
     setTimeout(() => {
       Array.from(document.images).forEach(img => {
         if (!img.complete || img.naturalWidth === 0) {
-          const r = img.getBoundingClientRect();
-          if (r.height === 0 || !img.currentSrc) {
-            img.loading = "eager";
-          }
+          img.loading = "eager";
         }
       });
     }, 1200);
