@@ -287,13 +287,11 @@ form{grid-column:8/13;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,
   .trust li:nth-child(n+3){border-top:1px solid var(--line)}
   .gar-num b{font-size:clamp(3.6rem,18vw,4.6rem)}
   .spec div{grid-template-columns:7rem minmax(0,1fr)}
-  .slots{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:8px}
-  .slots .slot{grid-column:span 1 !important}
-  .slot-frame{aspect-ratio:3/4}
-  .slot-frame .mono{display:none}
-  .slot figcaption{flex-direction:column;gap:0}
-  .slot figcaption b{font-size:12px}
-  .about-slot{max-width:200px}
+  .slots{row-gap:20px}
+  .slot-frame{aspect-ratio:2/1}
+  .slot figcaption{flex-direction:row;gap:12px}
+  .about-slot{max-width:none}
+  .about-slot .slot-frame{aspect-ratio:16/9}
   .steps{grid-template-columns:1fr;border-top:0}
   .step{display:grid;grid-template-columns:2.6rem minmax(0,1fr);column-gap:10px;row-gap:2px;border-left:0 !important;padding:12px 0 !important;border-top:1px solid var(--line);margin-top:0 !important}
   .step b{grid-row:span 2;font-size:1.6rem}
@@ -301,8 +299,12 @@ form{grid-column:8/13;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,
   .foot-logo,.foot-c1,.foot-c2,.foot-c3{grid-column:1/-1}
   .legal-list{grid-template-columns:1fr}
   .legal-list dt{border-bottom:0;padding-bottom:0}
-  .hero-fig{margin:0 -8px}
+  /* --- mobil audit v4 --- */
+  .hero-fig{margin:4px 0 0}
+  .hero-fig .iso{aspect-ratio:4/3}
+  .hero-fig figcaption{padding-top:8px}
   .hero-fig figcaption span:last-child{display:none}
+  .hero-cta{gap:14px 24px;align-items:flex-end}
   .tb,.tb tbody,.tb tr{display:block}
   .tb tr:first-child{display:none}
   .tb tr:last-child{display:grid;grid-template-columns:1fr 1fr}
@@ -311,17 +313,22 @@ form{grid-column:8/13;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,
   .tb td:nth-child(1)::before{content:"Kivitelező"}.tb td:nth-child(2)::before{content:"Terület"}.tb td:nth-child(3)::before{content:"Tapasztalat"}
   .tb td:nth-child(4)::before{content:"Garancia"}.tb td:nth-child(5)::before{content:"Felmérés"}.tb td:nth-child(6)::before{content:"Számla"}
   .svc-panel{display:none}
-  .svc li{grid-template-columns:2.2rem minmax(0,1fr) 92px;column-gap:10px;row-gap:2px;align-items:center;padding-block:10px}
-  .svc .n{grid-row:span 2}
-  .svc h3{grid-column:2}.svc p{grid-column:2;grid-row:2}
-  .svc-thumb{display:block;grid-column:3;grid-row:1/3;height:64px}
-  .gar-num{flex-direction:row}
-  .gauge{width:132px}
-  .pipe{position:absolute;left:5px;top:0;bottom:0;width:12px;height:auto;margin:0}
+  .svc li{grid-template-columns:2rem minmax(0,1fr) 84px;column-gap:10px;row-gap:3px;align-items:center;padding-block:12px}
+  .svc .n{grid-column:1;grid-row:1;align-self:baseline}
+  .svc h3{grid-column:2;grid-row:1;align-self:baseline}
+  .svc p{grid-column:2;grid-row:2;line-height:1.4}
+  .svc li h3,.svc li.on h3,.svc li:hover h3{transform:none}
+  .svc li.on::before{transform:scaleX(0)}
+  .svc li.on .n{color:var(--fg-2)}
+  .svc-thumb{display:block;grid-column:3;grid-row:1/3;height:60px;align-self:center}
+  .gar-num{flex-direction:row;gap:16px}
+  .gauge{width:128px}
+  .bp{grid-template-columns:96px minmax(0,1fr);gap:14px}
+  .pipe{position:absolute;left:0;top:0;bottom:0;width:12px;height:auto;margin:0}
   .pipe i{transform-origin:top;transform:scaleY(0);background:linear-gradient(90deg,#f2c29f,#c8774a 40%,#7a3f20)}
   .flow{position:relative}
-  .steps{padding-left:28px}
-  .step::before{left:-27px;top:16px}
+  .steps{padding-left:26px}
+  .step::before{left:-28px;top:17px;margin-left:0}
   .mbar{display:grid;grid-template-columns:1fr 1fr;position:fixed;inset:auto 0 0;z-index:40;background:rgba(15,15,14,.96);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);transition:transform .4s var(--ease)}
   .mbar a{height:46px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none}
   .mbar a:first-child{background:var(--cu);color:var(--ink);font-weight:500}

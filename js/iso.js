@@ -227,7 +227,7 @@
     render: function (root) {
       (root || document).querySelectorAll("[data-iso]").forEach(function (el) {
         var fn = SCENES[el.getAttribute("data-iso")];
-        if (fn) el.innerHTML = fn(el.classList.contains("svc-thumb"));
+        if (fn) el.innerHTML = fn(el.classList.contains("svc-thumb") || window.innerWidth < 761);
       });
     }
   };
