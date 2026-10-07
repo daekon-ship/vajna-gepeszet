@@ -55,49 +55,26 @@
 
   <!-- HERO -->
   <section class="hero">
-    <svg class="hero-draw" viewBox="0 0 640 520" aria-hidden="true" fill="none" stroke-linejoin="round">
-      <g stroke="rgba(235,231,223,.22)" stroke-width="1">
-        <path d="M0 230H640M0 330H640"/>
-        <path d="M120 230V0M200 230V0M280 230V0M360 230V0M440 230V0"/>
-        <path d="M160 330V520M240 330V520M320 330V520M400 330V520M480 330V520"/>
-      </g>
-      <g stroke="#c8774a" stroke-width="1.2" opacity=".75">
-        <path d="M0 222H640M0 238H640"/>
-        <path d="M114 222V0M126 222V0M194 222V0M206 222V0M274 222V0M286 222V0"/>
-      </g>
-      <g stroke="rgba(235,231,223,.5)" stroke-width="1.2">
-        <path d="M0 322H640M0 338H640"/>
-        <path d="M154 338V520M166 338V520M234 338V520M246 338V520M314 338V520M326 338V520"/>
-      </g>
-      <g stroke="rgba(235,231,223,.55)" stroke-width="1.2" fill="#0f0f0e">
-        <path d="M108 120l24 18v-18l-24 18z"/><path d="M188 120l24 18v-18l-24 18z"/><path d="M268 120l24 18v-18l-24 18z"/>
-        <path d="M148 420l24 18v-18l-24 18z"/><path d="M228 420l24 18v-18l-24 18z"/><path d="M308 420l24 18v-18l-24 18z"/>
-        <circle cx="560" cy="330" r="20"/><path d="M550 313l28 17-28 17"/>
-      </g>
-      <g fill="rgba(235,231,223,.4)" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.5">
-        <text x="460" y="214">ELŐREMENŐ</text><text x="460" y="360">VISSZATÉRŐ</text><text x="520" y="300">Ø35</text>
-      </g>
-    </svg>
     <div class="wrap grid hero-grid">
       <div class="hero-main rv">
         <p class="mono">Budapest / HU — Mechanical services</p>
         <h1 class="hero-h"><span>A jó gépészet</span><span>nem látszik.</span><span class="cu">Csak működik.</span></h1>
         <p class="hero-sub">Víz-, gáz- és fűtésszerelés, klíma és légtechnika Budapesten — átláthatóan, számlával, garanciával.</p>
-      </div>
-      <div class="hero-side rv">
-        <table class="tb" aria-label="Röviden">
-          <tr><th class="mono">Kivitelező</th><td>Vajna János</td></tr>
-          <tr><th class="mono">Terület</th><td>Budapest</td></tr>
-          <tr><th class="mono">Tapasztalat</th><td>15+ év</td></tr>
-          <tr><th class="mono">Garancia</th><td>5 év, szerelési munkára</td></tr>
-          <tr><th class="mono">Felmérés</th><td>Budapesten ingyenes</td></tr>
-          <tr><th class="mono">Számla</th><td>Minden munkáról</td></tr>
-        </table>
-        <div class="tb-cta">
-          <a class="hero-tel" href="tel:+36204161316">+36 20 416 1316</a>
+        <div class="hero-cta">
+          <a class="hero-tel" href="tel:+36204161316"><span class="mono cu">Hívjon most</span>+36 20 416 1316</a>
           <a class="link" href="#ajanlat">Ajánlatot kérek <span aria-hidden="true">→</span></a>
         </div>
       </div>
+      <figure class="hero-fig" aria-hidden="true">
+        <div class="iso" data-iso="hero"></div>
+        <figcaption class="mono"><span>Fig. 00 — Kazánház, osztó-gyűjtő</span><span>Izometria / M 1:20</span></figcaption>
+      </figure>
+    </div>
+    <div class="wrap">
+      <table class="tb" aria-label="Röviden">
+        <tr><th class="mono">Kivitelező</th><th class="mono">Terület</th><th class="mono">Tapasztalat</th><th class="mono">Garancia</th><th class="mono">Felmérés</th><th class="mono">Számla</th></tr>
+        <tr><td>Vajna János</td><td>Budapest</td><td>15+ év</td><td>5 év, szerelési munkára</td><td>Budapesten ingyenes</td><td>Minden munkáról</td></tr>
+      </table>
     </div>
   </section>
 
@@ -105,13 +82,25 @@
   <section class="sec" id="szolgaltatasok">
     <div class="wrap">
       <div class="sec-top"><span class="mono"><em class="cu">A-01</em> Szolgáltatások</span><h2>Kisebb javításoktól komplett gépészeti munkákig.</h2></div>
-      <ol class="svc">
-        <li class="rv"><span class="n mono">01</span><h3>Víz</h3><p>Vízszerelés, csőhálózat szerelés</p><span class="tag mono">Water</span></li>
-        <li class="rv"><span class="n mono">02</span><h3>Gáz</h3><p>Gázszerelés</p><span class="tag mono">Gas</span></li>
-        <li class="rv"><span class="n mono">03</span><h3>Fűtés</h3><p>Fűtésszerelés, központi fűtési rendszerek</p><span class="tag mono">Heating</span></li>
-        <li class="rv"><span class="n mono">04</span><h3>Klíma</h3><p>Klímaszerelés, légtechnika</p><span class="tag mono">HVAC</span></li>
-        <li class="rv"><span class="n mono">05</span><h3>Csatorna</h3><p>Csatornázás, duguláselhárítás</p><span class="tag mono">Drainage</span></li>
+      <div class="grid svc-grid">
+      <ol class="svc" id="svc">
+        <li class="rv on" data-i="0" tabindex="0"><span class="n mono">01</span><h3>Víz</h3><p>Vízszerelés, csőhálózat szerelés</p><div class="iso svc-thumb" data-iso="viz" aria-hidden="true"></div></li>
+        <li class="rv" data-i="1" tabindex="0"><span class="n mono">02</span><h3>Gáz</h3><p>Gázszerelés</p><div class="iso svc-thumb" data-iso="gaz" aria-hidden="true"></div></li>
+        <li class="rv" data-i="2" tabindex="0"><span class="n mono">03</span><h3>Fűtés</h3><p>Fűtésszerelés, központi fűtési rendszerek</p><div class="iso svc-thumb" data-iso="futes" aria-hidden="true"></div></li>
+        <li class="rv" data-i="3" tabindex="0"><span class="n mono">04</span><h3>Klíma</h3><p>Klímaszerelés, légtechnika</p><div class="iso svc-thumb" data-iso="klima" aria-hidden="true"></div></li>
+        <li class="rv" data-i="4" tabindex="0"><span class="n mono">05</span><h3>Csatorna</h3><p>Csatornázás, duguláselhárítás</p><div class="iso svc-thumb" data-iso="csatorna" aria-hidden="true"></div></li>
       </ol>
+      <figure class="svc-panel" aria-hidden="true">
+        <div class="svc-stage">
+          <div class="iso svc-fig on" data-iso="viz"></div>
+          <div class="iso svc-fig" data-iso="gaz"></div>
+          <div class="iso svc-fig" data-iso="futes"></div>
+          <div class="iso svc-fig" data-iso="klima"></div>
+          <div class="iso svc-fig" data-iso="csatorna"></div>
+        </div>
+        <figcaption class="mono" id="svcCap" data-caps="Fig. 01 — Víz: Rézcső, T-idom, golyóscsap|Fig. 02 — Gáz: Acélcső, gázmérő, elzáró|Fig. 03 — Fűtés: Lapradiátor, termosztatikus szelep|Fig. 04 — Klíma: Beltéri egység, hűtőköri rézpár|Fig. 05 — Csatorna: Lejtéses ágvezeték, 45° ágidom">Fig. 01 — Víz: Rézcső, T-idom, golyóscsap</figcaption>
+      </figure>
+      </div>
     </div>
   </section>
 
@@ -120,7 +109,7 @@
     <div class="wrap">
       <div class="sec-top"><span class="mono"><em class="cu">A-02</em> Garancia</span></div>
       <div class="grid gar-grid">
-        <div class="gar-num rv"><b>05</b><span>év<br>szerelési<br><em>garancia</em></span></div>
+        <div class="gar-num rv"><div class="gauge" id="gauge" role="img" aria-label="5 év szerelési garancia"></div><span><b>5 év</b>szerelési<br><em>garancia</em></span></div>
         <div class="gar-copy rv">
           <p class="q">A munka nem akkor ér véget, amikor elteszem a szerszámokat.</p>
           <p>Az elvégzett szerelési munkára akár 5 év garanciát vállalok.</p>
@@ -167,6 +156,8 @@
   <section class="sec" id="menet">
     <div class="wrap">
       <div class="sec-top"><span class="mono"><em class="cu">A-05</em> Munka menete</span><h2>Így dolgozom.</h2></div>
+      <div class="flow">
+      <div class="pipe" aria-hidden="true"><i id="pipeFill"></i></div>
       <ol class="steps" id="steps">
         <li class="step rv"><b>01</b><h3>Beszélünk</h3><p>Telefonon elmondja, mi a gond, és egyeztetünk egy időpontot.</p></li>
         <li class="step rv"><b>02</b><h3>Felmérem</h3><p>Helyben megnézem a rendszert. Budapesten díjmentesen.</p></li>
@@ -174,6 +165,7 @@
         <li class="step rv"><b>04</b><h3>Megcsinálom</h3><p>Az egyeztetett módon, számlával.</p></li>
         <li class="step rv"><b>05</b><h3>Garanciát vállalok</h3><p>A szerelési munkára akár 5 évre.</p></li>
       </ol>
+      </div>
     </div>
   </section>
 
@@ -189,12 +181,8 @@
           <button class="c-btn mono" id="copyBtn" type="button">Szám másolása</button>
         </div>
         <div class="bp">
-          <svg viewBox="0 0 56 56" aria-hidden="true" fill="none">
-            <circle cx="28" cy="28" r="27" stroke="rgba(235,231,223,.25)"/>
-            <path d="M24 1c2 10 4 16 5 22s-2 12 0 18 3 10 4 14" stroke="rgba(235,231,223,.55)" stroke-width="3"/>
-            <circle cx="36" cy="27" r="2.5" fill="#c8774a"/>
-          </svg>
-          <div><b>Budapest</b><p>Budapesten a helyszíni felmérés és kiszállás díjmentes.</p></div>
+          <div class="bp-map" id="bpMap" aria-hidden="true"></div>
+          <div><b>Budapest</b><p>Budapesten a helyszíni felmérés és kiszállás díjmentes.</p><span class="mono">47.4979° N — 19.0402° E</span></div>
         </div>
       </div>
 
@@ -238,6 +226,7 @@
   <a href="#ajanlat">Ajánlat</a>
 </nav>
 
+<script src="js/iso.js" defer></script>
 <script src="js/main.js" defer></script>
 </body>
 </html>

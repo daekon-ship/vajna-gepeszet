@@ -82,19 +82,12 @@ main,.site-foot{position:relative;z-index:1}
 /* ---------- Hero ---------- */
 .hero{padding-top:calc(56px + clamp(56px,8vw,112px));padding-bottom:clamp(36px,4vw,56px);position:relative;overflow:hidden}
 .hero-grid{row-gap:28px;align-items:end}
-.hero-main{grid-column:1/8;display:flex;flex-direction:column;gap:22px}
+.hero-main{grid-column:1/6;display:flex;flex-direction:column;gap:20px;align-self:center;position:relative;z-index:2}
 .hero-h{font-stretch:68%;font-weight:620;font-size:var(--t-1);line-height:.95;letter-spacing:-.01em}
 .hero-h span{display:block}
 .hero-sub{max-width:44ch;color:var(--fg-2);font-size:clamp(15px,1.15vw,17px)}
-.hero-side{grid-column:8/13;display:flex;flex-direction:column;border:1px solid var(--line-2);background:var(--ink)}
-.tb{width:100%;border-collapse:collapse;font-size:var(--t-s)}
-.tb th,.tb td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--line);font-weight:400;vertical-align:baseline}
-.tb th{width:38%;border-right:1px solid var(--line)}
-.tb-cta{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 16px;padding:12px}
-.tb-cta .link{margin:0}
 .hero-tel{font-stretch:72%;font-weight:600;font-size:clamp(1.35rem,1.8vw,1.7rem);line-height:1.05;text-decoration:none;font-variant-numeric:tabular-nums;transition:color .3s;width:fit-content}
 .hero-tel:hover{color:var(--cu)}
-.hero-draw{position:absolute;right:-2%;top:56px;width:min(640px,52vw);height:auto;opacity:.5;pointer-events:none}
 
 .trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .trust ul{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
@@ -129,7 +122,7 @@ main,.site-foot{position:relative;z-index:1}
 /* ---------- Munkák (fotóhelyek) ---------- */
 .slots{row-gap:28px}
 .slot{grid-column:span 4;display:flex;flex-direction:column;gap:10px;min-width:0}
-.slot-frame{position:relative;aspect-ratio:4/3;border:1px solid var(--line-2);background:
+.slot-frame{position:relative;aspect-ratio:16/10;border:1px solid var(--line-2);background:
   repeating-linear-gradient(135deg,transparent 0 11px,rgba(235,231,223,.035) 11px 12px),var(--ink-2)}
 .slot-frame .mono{position:absolute;left:12px;top:10px}
 .slot-frame::after{content:"";position:absolute;left:50%;top:50%;width:18px;height:18px;transform:translate(-50%,-50%);background:linear-gradient(var(--line-2),var(--line-2)) center/1px 100% no-repeat,linear-gradient(var(--line-2),var(--line-2)) center/100% 1px no-repeat}
@@ -218,13 +211,59 @@ form{grid-column:8/13;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,
 .rv{transition:transform .9s var(--ease)}
 .js .rv:not(.in){transform:translateY(14px)}
 
+
+/* ---------- v3: illusztrációk ---------- */
+.iso svg{display:block;width:100%;height:100%}
+.hero{padding-top:calc(56px + clamp(32px,4vw,64px))}
+.hero-grid{align-items:center}
+.hero-cta{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px 28px;margin-top:6px}
+.hero-tel{display:flex;flex-direction:column;gap:2px}
+.hero-fig{grid-column:6/13;position:relative;margin-right:calc(var(--g) * -.5)}
+.hero-fig .iso{aspect-ratio:16/11}
+.hero-fig figcaption{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:8px;margin-top:4px}
+.tb{width:100%;border-collapse:collapse;margin-top:clamp(28px,3vw,44px);border:1px solid var(--line-2);font-size:var(--t-s);table-layout:fixed;background:var(--ink)}
+.tb th,.tb td{text-align:left;padding:9px 12px;border-right:1px solid var(--line);font-weight:400}
+.tb th{border-bottom:1px solid var(--line);padding-bottom:6px}
+.tb td{font-weight:500}
+
+.svc-grid{align-items:start}
+.svc{grid-column:1/8}
+.svc li{grid-template-columns:3rem minmax(0,1fr) minmax(0,1.6fr);display:grid;cursor:default}
+.svc .n{grid-column:auto}.svc h3{grid-column:auto}.svc p{grid-column:auto}
+.svc li.on::before{transform:scaleX(1)}
+.svc li.on .n{color:var(--cu)}
+.svc li.on h3{transform:translateX(6px)}
+.svc-thumb{display:none}
+.svc-panel{grid-column:8/13;position:sticky;top:76px;border:1px solid var(--line-2);background:
+  linear-gradient(rgba(235,231,223,.05) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(90deg,rgba(235,231,223,.05) 1px,transparent 1px) 0 0/24px 24px,var(--ink-2)}
+.svc-stage{position:relative;aspect-ratio:5/4}
+.svc-fig{position:absolute;inset:8%;opacity:0;transform:translateY(10px) scale(.98);transition:opacity .5s,transform .8s var(--ease)}
+.svc-fig.on{opacity:1;transform:none}
+.svc-panel figcaption{border-top:1px solid var(--line);padding:8px 12px}
+
+.gar-num{align-items:center;gap:20px}
+.gauge{width:clamp(150px,15vw,210px);flex:none}
+.gauge svg{display:block;width:100%}
+.gauge .needle{transition:transform 2.2s cubic-bezier(.3,1.25,.4,1) .2s}
+.gauge.go .needle{transform:rotate(45deg) !important}
+.gar-num span b{display:block;font-size:clamp(2rem,3.4vw,3rem);line-height:.95;font-stretch:66%;letter-spacing:-.01em;margin-bottom:6px;text-transform:none}
+
+.pipe{position:relative;height:14px;margin-bottom:-7px;border-radius:7px;background:linear-gradient(#26231f,#3a3530 45%,#1b1916);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.pipe i{position:absolute;inset:3px;border-radius:4px;background:linear-gradient(#f2c29f,#c8774a 40%,#7a3f20);transform-origin:left;transform:scaleX(0)}
+.steps{border-top:0;position:relative}
+.step{padding-top:24px}
+.step::before{content:"";position:absolute;top:-4px;width:12px;height:12px;border:2px solid var(--ink);border-radius:50%;background:var(--fg-2);margin-left:-1px}
+.step{position:relative}
+
+.bp{grid-template-columns:clamp(110px,11vw,150px) minmax(0,1fr);gap:18px;align-items:center}
+.bp-map{aspect-ratio:1;border:1px solid var(--line);background:var(--ink-2)}
+.bp-map svg{display:block;width:100%;height:100%}
+.bp .mono{display:block;margin-top:6px}
+
 /* ---------- Tablet ---------- */
 @media (max-width:1080px){
   .hero-main{grid-column:1/-1}
-  .hero-side{grid-column:1/8}
-  .svc .tag{display:none}
-  .svc p{grid-column:6/13}
-  .gar-num{grid-column:1/7}.gar-copy{grid-column:7/13}.spec{grid-column:1/-1}
+    .gar-num{grid-column:1/7}.gar-copy{grid-column:7/13}.spec{grid-column:1/-1}
   .steps{grid-template-columns:repeat(3,minmax(0,1fr))}
   .step:nth-child(4){border-left:0;padding-left:0}
   .step:nth-child(n+4){border-top:1px solid var(--line);margin-top:12px}
@@ -240,17 +279,12 @@ form{grid-column:8/13;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,
   .menu-btn{display:block}
   .hero{padding-top:calc(56px + 36px);padding-bottom:28px}
   .hero-h{font-size:clamp(2.1rem,10vw,2.9rem)}
-  .hero-draw{width:120vw;right:-50%;top:40px;opacity:.14}
-  .hero-side{margin-top:4px}
-  .cols .wrap{grid-template-columns:repeat(2,1fr)}
+      .cols .wrap{grid-template-columns:repeat(2,1fr)}
   .cols i:nth-child(n+3){display:none}
   .trust ul{grid-template-columns:1fr 1fr}
   .trust li{padding:12px}
   .trust li:nth-child(odd){border-left:0;padding-left:0}
   .trust li:nth-child(n+3){border-top:1px solid var(--line)}
-  .svc li{grid-template-columns:2.2rem minmax(0,1fr);row-gap:2px;padding-block:12px}
-  .svc .n{grid-column:1 !important}
-  .svc h3,.svc p{grid-column:2 !important}
   .gar-num b{font-size:clamp(3.6rem,18vw,4.6rem)}
   .spec div{grid-template-columns:7rem minmax(0,1fr)}
   .slots{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:8px}
@@ -267,6 +301,27 @@ form{grid-column:8/13;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,
   .foot-logo,.foot-c1,.foot-c2,.foot-c3{grid-column:1/-1}
   .legal-list{grid-template-columns:1fr}
   .legal-list dt{border-bottom:0;padding-bottom:0}
+  .hero-fig{margin:0 -8px}
+  .hero-fig figcaption span:last-child{display:none}
+  .tb,.tb tbody,.tb tr{display:block}
+  .tb tr:first-child{display:none}
+  .tb tr:last-child{display:grid;grid-template-columns:1fr 1fr}
+  .tb td{border-bottom:1px solid var(--line);padding:9px 10px}
+  .tb td::before{display:block;font-family:var(--mono);font-size:var(--t-m);letter-spacing:.13em;text-transform:uppercase;color:var(--fg-2);font-weight:400;margin-bottom:2px}
+  .tb td:nth-child(1)::before{content:"Kivitelező"}.tb td:nth-child(2)::before{content:"Terület"}.tb td:nth-child(3)::before{content:"Tapasztalat"}
+  .tb td:nth-child(4)::before{content:"Garancia"}.tb td:nth-child(5)::before{content:"Felmérés"}.tb td:nth-child(6)::before{content:"Számla"}
+  .svc-panel{display:none}
+  .svc li{grid-template-columns:2.2rem minmax(0,1fr) 92px;column-gap:10px;row-gap:2px;align-items:center;padding-block:10px}
+  .svc .n{grid-row:span 2}
+  .svc h3{grid-column:2}.svc p{grid-column:2;grid-row:2}
+  .svc-thumb{display:block;grid-column:3;grid-row:1/3;height:64px}
+  .gar-num{flex-direction:row}
+  .gauge{width:132px}
+  .pipe{position:absolute;left:5px;top:0;bottom:0;width:12px;height:auto;margin:0}
+  .pipe i{transform-origin:top;transform:scaleY(0);background:linear-gradient(90deg,#f2c29f,#c8774a 40%,#7a3f20)}
+  .flow{position:relative}
+  .steps{padding-left:28px}
+  .step::before{left:-27px;top:16px}
   .mbar{display:grid;grid-template-columns:1fr 1fr;position:fixed;inset:auto 0 0;z-index:40;background:rgba(15,15,14,.96);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);transition:transform .4s var(--ease)}
   .mbar a{height:46px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none}
   .mbar a:first-child{background:var(--cu);color:var(--ink);font-weight:500}

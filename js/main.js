@@ -2,6 +2,24 @@
   "use strict";
   var $ = function (s) { return document.querySelector(s); };
 
+  // Illusztrációk
+  if (window.VajnaIso) window.VajnaIso.render();
+  if (window.VajnaMap) window.VajnaMap($("#bpMap"));
+  var gauge = $("#gauge");
+  if (window.VajnaGauge) window.VajnaGauge(gauge);
+
+  // Szolgáltatások: rajz csere hoverre / fókuszra
+  var rows = document.querySelectorAll("#svc li"), figs = document.querySelectorAll(".svc-fig"), cap = $("#svcCap");
+  var caps = cap ? cap.getAttribute("data-caps").split("|") : [];
+  rows.forEach(function (r, i) {
+    function act() {
+      rows.forEach(function (x, k) { x.classList.toggle("on", k === i); });
+      figs.forEach(function (x, k) { x.classList.toggle("on", k === i); });
+      if (cap) cap.textContent = caps[i];
+    }
+    r.addEventListener("mouseenter", act); r.addEventListener("focus", act);
+  });
+
   // Év a láblécben
   var y = $("#year"); if (y) y.textContent = new Date().getFullYear();
 
@@ -40,9 +58,28 @@
       es.forEach(function (e) { e.target.classList.toggle("on", e.isIntersecting); });
     }, { rootMargin: "-40% 0px -40% 0px" });
     steps.forEach(function (s) { so.observe(s); });
+    if (gauge) {
+      var go = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { gauge.classList.add("go"); go.disconnect(); } });
+      }, { threshold: 0.5 });
+      go.observe(gauge);
+    }
   } else {
+    if (gauge) gauge.classList.add("go");
     rv.forEach(function (el) { el.classList.add("in"); });
   }
+
+  // Munka menete: a cső görgetésre töltődik
+  var stepsEl = $("#steps"), fill = $("#pipeFill"), ticking = false;
+  function prog() {
+    ticking = false;
+    if (!stepsEl || !fill) return;
+    var r = stepsEl.getBoundingClientRect(), vh = window.innerHeight;
+    var p = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (r.height + vh * 0.35)));
+    fill.style.transform = window.innerWidth > 760 ? "scaleX(" + p.toFixed(3) + ")" : "scaleY(" + p.toFixed(3) + ")";
+  }
+  window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(prog); } }, { passive: true });
+  window.addEventListener("resize", prog); prog();
 
   // Telefonszám másolása
   var cb = $("#copyBtn");
