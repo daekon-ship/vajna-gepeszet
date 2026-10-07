@@ -334,8 +334,106 @@ form{grid-column:8/13;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,
   .mbar a:first-child{background:var(--cu);color:var(--ink);font-weight:500}
   body.menu-open .mbar{transform:translateY(110%)}
 }
+
+/* ===== v5: kisebb skála, szorosabb rend ===== */
+:root{
+  --t-1:clamp(2rem,3.4vw,3.3rem);
+  --t-2:clamp(1.35rem,1.9vw,1.85rem);
+  --t-3:clamp(1rem,1.1vw,1.1rem);
+  --t-b:14.5px;--t-s:13px;--t-m:10px;
+  --sec:clamp(48px,5vw,76px);
+  --g:clamp(16px,3vw,40px);
+}
+body{font-size:var(--t-b)}
+.mono{letter-spacing:.11em}
+.hdr-in{height:52px}
+.logo{font-size:14px}
+.nav a,.hdr-tel{font-size:12.5px}
+.hero{padding-top:calc(52px + clamp(28px,3vw,48px));padding-bottom:clamp(28px,3vw,44px)}
+.hero-main{gap:16px}
+.hero-sub{font-size:14.5px;max-width:42ch}
+.hero-tel{font-size:clamp(1.2rem,1.5vw,1.45rem)}
+.hero-fig .iso{aspect-ratio:16/10}
+.tb{margin-top:clamp(20px,2.4vw,32px);font-size:12.5px}
+.tb th,.tb td{padding:7px 10px}
+.sec-top{margin-bottom:clamp(18px,2.2vw,30px);padding-top:12px}
+.sec-top h2{grid-column:4/12}
+.svc li{padding-block:11px}
+.svc h3{font-size:var(--t-3)}
+.svc-panel{top:68px}
+.svc-stage{aspect-ratio:4/3}
+.gauge{width:clamp(130px,12vw,170px)}
+.gar-num span b{font-size:clamp(1.6rem,2.4vw,2.2rem)}
+.gar-copy .q{font-size:var(--t-3)}
+.slot-frame{aspect-ratio:16/9}
+.about-h{grid-column:1/4}
+.about-text{grid-column:4/12;display:grid;grid-template-columns:1fr 1fr;column-gap:var(--cg);row-gap:12px}
+.about-text .lead{grid-column:1/-1}
+.about-text p{max-width:none}
+.step{padding-top:20px;gap:6px}
+.step b{font-size:clamp(1.4rem,1.9vw,1.8rem)}
+.c-tel{font-size:clamp(1.7rem,2.4vw,2.3rem)}
+.c-main{gap:12px}
+.f input,.f select,.f textarea{font-size:15px}
+.site-foot{padding-block:28px 18px}
+.foot-logo{font-size:1.15rem}
+
+@media (max-width:760px){
+  :root{--t-1:clamp(1.8rem,8.2vw,2.2rem);--t-2:clamp(1.25rem,5.6vw,1.45rem);--t-3:15px;--t-b:14px;--t-s:12.5px;--t-m:9.5px;--sec:40px;--g:16px}
+  .mono{letter-spacing:.09em}
+  .hero{padding-top:calc(52px + 22px);padding-bottom:20px}
+  .hero-h{font-size:var(--t-1);line-height:.98}
+  .hero-main{gap:12px}
+  .hero-sub{font-size:14px}
+  .hero-cta{gap:10px 18px}
+  .hero-tel{font-size:1.2rem}
+  .hero-fig .iso{aspect-ratio:16/11}
+  .hero-fig figcaption{display:none}
+  .tb{margin-top:14px}
+  .tb td{padding:7px 9px;font-size:12.5px}
+  .tb td::before{font-size:9px;letter-spacing:.09em}
+  .sec-top{margin-bottom:14px;padding-top:10px;row-gap:4px}
+  .svc li{grid-template-columns:1.7rem minmax(0,1fr) 64px;padding-block:9px;column-gap:8px;row-gap:1px}
+  .svc p{font-size:12.5px}
+  .svc-thumb{height:44px}
+  .gar-grid{row-gap:18px}
+  .gauge{width:104px}
+  .gar-num{gap:14px}
+  .gar-num span{font-size:13px}
+  .gar-num span b{font-size:1.5rem;margin-bottom:2px}
+  .spec div{grid-template-columns:6.2rem minmax(0,1fr);padding-block:7px;font-size:12.5px}
+  .slots{grid-template-columns:repeat(3,minmax(0,1fr)) !important;column-gap:8px;row-gap:0}
+  .slots .slot{grid-column:auto !important;gap:6px}
+  .slot-frame{aspect-ratio:1}
+  .slot-frame .mono{display:none}
+  .slot figcaption{flex-direction:column;gap:0}
+  .slot figcaption b{font-size:11px;line-height:1.2}
+  .slot figcaption .mono{display:none}
+  .about-grid{row-gap:12px}
+  .about-text{display:flex;gap:10px}
+  .about-text .voice{padding-left:12px}
+  .step{padding:9px 0 !important;column-gap:8px}
+  .step b{font-size:1.25rem}
+  .step h3{font-size:14px}
+  .step p{font-size:12.5px}
+  .steps{padding-left:22px}
+  .pipe{width:10px}
+  .step::before{left:-23px;top:13px;width:10px;height:10px}
+  .contact-grid{row-gap:22px}
+  .c-tel{font-size:1.75rem}
+  .bp{grid-template-columns:76px minmax(0,1fr);gap:12px;padding-top:12px}
+  .bp b{font-size:14px}
+  .f{padding-block:9px 5px}
+  .f input,.f select,.f textarea{font-size:16px}
+  .f-send{padding-top:14px}
+  .submit{padding:10px 14px}
+  .mnav-list a{font-size:1.8rem}
+  .foot-grid{row-gap:14px}
+}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important}
   .js .rv:not(.in){transform:none}
 }
+.hero-fig{margin-right:0}
+@media (min-width:761px){#szolgaltatasok{padding-top:calc(var(--sec) * .8)}}
